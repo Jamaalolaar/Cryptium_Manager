@@ -1,0 +1,274 @@
+GIT COMMANDS CHEATSHEET
+
+This file lists commonly used Git commands with short descriptions and example usage.
+It's meant as a quick reference; use `git help <command>` for full documentation.
+
+---
+SETUP & CONFIGURATION
+
+git --version
+  Show installed Git version.
+
+git config --global user.name "Your Name"
+  Set your Git user name (global).
+
+git config --global user.email "you@example.com"
+  Set your Git email (global).
+
+git config --global core.editor "code --wait"
+  Set default editor (example uses VS Code).
+
+git config --list
+  List current configuration.
+
+---
+CREATE / CLONE REPOSITORIES
+
+git init
+  Initialize a new Git repository in the current directory.
+
+git clone <url>
+  Clone a remote repository locally, e.g. `git clone https://github.com/user/repo.git`.
+
+git clone <url> <directory>
+  Clone into a specific directory.
+
+---
+BASIC STATUS / INSPECTION
+
+git status
+  Show changed files, staged files, and branch status.
+
+git diff
+  Show unstaged changes between working tree and index.
+
+git diff --staged
+  Show changes between index and last commit (staged changes).
+
+git log
+  Show commit history.
+
+git log --oneline --graph --decorate --all
+  Compact, visual commit history.
+
+git show <commit>
+  Show details for a specific commit.
+
+git blame <file>
+  Show who changed each line in a file and when.
+
+---
+STAGING & COMMITS
+
+git add <file>
+  Stage a file for commit.
+
+git add .
+  Stage all changed files in the working directory (be careful).
+
+git reset <file>
+  Unstage a staged file (moves from index back to working tree).
+
+git commit -m "message"
+  Commit staged changes with a message.
+
+git commit --amend
+  Amend the most recent commit (useful to change message or include missed changes).
+
+git restore --staged <file>
+  Alternative to unstage a file (newer porcelain command).
+
+---
+BRANCHING & CHECKOUT
+
+git branch
+  List local branches.
+
+git branch -a
+  List all branches (including remotes).
+
+git branch <name>
+  Create a new branch locally.
+
+git checkout <branch>
+  Switch to an existing branch (older style).
+
+git switch <branch>
+  Switch to a branch (newer recommended command).
+
+git switch -c <branch>
+  Create and switch to a new branch.
+
+git branch -d <branch>
+  Delete a branch that has been merged.
+
+git branch -D <branch>
+  Force-delete a branch (dangerous).
+
+---
+MERGE & REBASE
+
+git merge <branch>
+  Merge <branch> into current branch (creates a merge commit by default).
+
+git rebase <branch>
+  Reapply commits on top of <branch> (linear history). Use carefully with shared branches.
+
+git pull --rebase origin main
+  Fetch remote changes then rebase local commits on top.
+
+git pull
+  Fetch and merge remote changes into current branch.
+
+---
+REMOTE REPOSITORIES
+
+git remote -v
+  Show configured remote repositories and URLs.
+
+git remote add origin <url>
+  Add a remote named 'origin'.
+
+git fetch origin
+  Download remote refs and objects, but do not merge.
+
+git pull origin main
+  Fetch and merge (or rebase) remote branch into local branch.
+
+git push origin main
+  Push local branch 'main' to remote 'origin'.
+
+git push -u origin <branch>
+  Push and set remote tracking reference (useful for new branches).
+
+git push --force
+  Force push: overwrites remote history — dangerous on shared branches.
+
+---
+UNDO & HISTORY REWRITE (USE WITH CAUTION)
+
+git revert <commit>
+  Create a new commit that undoes the changes introduced by <commit>.
+
+git reset --soft <commit>
+  Move HEAD to <commit>, keep changes staged.
+
+git reset --mixed <commit>
+  Move HEAD to <commit>, keep changes in working tree (default).
+
+git reset --hard <commit>
+  Move HEAD to <commit> and discard all subsequent changes (destructive).
+
+git reflog
+  Show history of HEAD movements (very useful to recover lost commits).
+
+---
+STASH
+
+git stash
+  Save uncommitted changes to a stack and revert working tree to HEAD.
+
+git stash list
+  List saved stashes.
+
+git stash pop
+  Apply the most recent stash and remove it from the stash list.
+
+git stash apply stash@{2}
+  Apply a specific stash without removing it.
+
+git stash drop stash@{0}
+  Delete a stash entry.
+
+---
+TAGGING
+
+git tag <name>
+  Create a lightweight tag at current commit.
+
+git tag -a v1.0 -m "message"
+  Create an annotated tag.
+
+git push origin --tags
+  Push tags to remote.
+
+---
+SEARCH & DEBUG
+
+git grep "pattern"
+  Search for text in tracked files.
+
+git bisect start
+  Begin a binary search to find the commit that introduced a bug.
+
+git bisect bad <bad-commit>
+  Mark current or named commit as bad.
+
+git bisect good <good-commit>
+  Mark a known good commit.
+
+---
+ADVANCED / OTHER USEFUL COMMANDS
+
+git rm <file>
+  Remove a file from both working tree and index.
+
+git mv <old> <new>
+  Move/rename a file (git records it as such).
+
+git archive --format=zip --output=release.zip HEAD
+  Create an archive of the current tree.
+
+git format-patch origin/main
+  Generate patch files for commits not in origin/main.
+
+git apply <patchfile>
+  Apply a patch created with format-patch or git diff.
+
+git submodule add <url> <path>
+  Add a submodule.
+
+git worktree add ../other-worktree feature/branch
+  Create an additional working tree attached to the repository.
+
+git fsck --full
+  Check repository integrity.
+
+git gc --aggressive --prune=now
+  Run garbage collection to optimize repository (space/time tradeoffs).
+
+---
+HELP & DOCUMENTATION
+
+git help <command>
+  Show help for a git command (e.g., `git help commit`).
+
+git <command> --help
+  Equivalent to `git help`.
+
+---
+SAMPLE WORKFLOWS (cheats)
+
+# Create feature branch and push it
+git switch -c feature/my-feature
+# work, add, commit
+git push -u origin feature/my-feature
+
+# Sync local main with remote
+git checkout main
+git fetch origin
+git rebase origin/main    # or `git pull --rebase origin main`
+
+# Undo last local commit but keep changes
+git reset --soft HEAD~1
+
+# Discard all local changes
+git reset --hard
+
+---
+NOTES
+- Be careful with `git reset --hard` and `git push --force` on shared branches.
+- Prefer `git pull --rebase` for a cleaner commit history on personal branches.
+- Use `git reflog` to recover from many common mistakes.
+
+End of cheatsheet.

@@ -1,0 +1,157 @@
+Metadata-Version: 2.4
+Name: cryptium-manager
+Version: 0.1.0
+Summary: A file management and automation tool.
+Author: Jamaldeen Mukadam
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
+# Cryptium Manager
+
+A powerful file management and automation tool that organizes your files automatically. Cryptium Manager scans directories, categorizes files by type, and keeps detailed activity logs of all operations.
+
+## Features
+
+- **Automatic File Organization** — Scan directories and automatically move files into categorized folders based on file type
+- **Flexible Categorization** — Use built-in file extension mappings or define your own custom categories
+- **File Operations** — Search, move, rename, and delete files with ease
+- **Activity Logging** — Maintain detailed logs of all file operations for audit and recovery purposes
+- **Cross-Platform Support** — Works on Windows, macOS, and Linux
+
+## Requirements
+
+- Python 3.10 or higher
+
+## Installation
+
+Install cryptium-manager from PyPI:
+
+```bash
+pip install cryptium-manager
+```
+
+Or install from source:
+
+```bash
+git clone <repository-url>
+cd cryptium-manager
+pip install -e .
+```
+
+## Quick Start
+
+### Using Built-in File Extension Mappings
+
+Run cryptium with the default file categorization:
+
+```bash
+cryptium --path "C:\path\to\your\folder"
+```
+
+### Using Custom File Categories
+
+Define your own file-to-folder mappings and run:
+
+```bash
+cryptium --path "C:\path\to\your\folder" --config custom_mapping.json
+```
+
+### Available Commands
+
+```bash
+# Display help and available options
+cryptium --help
+
+# Organize files in a specific directory
+cryptium --path "C:\path\to\folder"
+
+# Use custom extension mapping
+cryptium --path "C:\path\to\folder" --mapping "{'.md': 'Documents', '.jpg': 'Images'}"
+
+# View activity logs
+cryptium --logs
+
+# Dry run (preview changes without executing)
+cryptium --path "C:\path\to\folder" --dry-run
+```
+
+## How It Works
+
+Cryptium Manager organizes your files automatically:
+
+1. **Scans** the target directory for files
+2. **Analyzes** each file's extension
+3. **Categorizes** files based on the extension mapping (built-in or custom)
+4. **Moves** files to their appropriate folders
+5. **Logs** all operations for your records
+
+## Built-in File Categories
+
+The tool comes with a default mapping that organizes files into these categories:
+
+- **Documents** — `.pdf`, `.doc`, `.docx`, `.txt`, `.md`, etc.
+- **Images** — `.jpg`, `.png`, `.gif`, `.svg`, etc.
+- **Videos** — `.mp4`, `.avi`, `.mov`, `.mkv`, etc.
+- **Audio** — `.mp3`, `.wav`, `.flac`, `.aac`, etc.
+- **Archives** — `.zip`, `.rar`, `.7z`, `.tar`, etc.
+- **Code** — `.py`, `.js`, `.java`, `.cpp`, etc.
+- **Other** — Files that don't match any category
+
+## Examples
+
+### Example 1: Organize Downloads Folder
+
+```bash
+cryptium --path "C:\Users\YourName\Downloads"
+```
+
+This will sort all files in your Downloads folder into their respective categories.
+
+### Example 2: Organize with Custom Categories
+
+```bash
+cryptium --path "C:\Users\YourName\Desktop" --mapping "{'md': 'Notes', 'txt': 'Notes'}"
+```
+
+This will move all `.md` and `.txt` files into a "Notes" folder on your Desktop.
+
+## Viewing Activity Logs
+
+After running cryptium, check the activity logs to see:
+
+- Which files were moved
+- Where they were moved to
+- Timestamps of operations
+- Any errors or warnings
+
+```bash
+cryptium --logs
+```
+
+## Safety Features
+
+- **Dry Run Mode** — Preview all changes before they're executed
+- **Detailed Logging** — Every operation is logged for audit trails
+- **Backup Prevention** — Option to create backups before moving files
+
+```bash
+# Preview without making changes
+cryptium --path "C:\folder" --dry-run
+```
+
+## Support
+
+For issues, feature requests, or questions:
+
+1. Check the [CONSTRUCTION.md](CONSTRUCTION.md) file for developer information
+2. Review activity logs for error details
+3. Open an issue on the project repository
+
+## License
+
+[Add your license here]
+
+## Author
+
+Jamaldeen Mukadam
+

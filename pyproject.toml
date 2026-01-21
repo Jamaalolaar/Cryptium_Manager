@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cryptium-manager"
+version = "0.1.0"
+description = "A file management and automation tool."
+authors = [{ name="Jamaldeen Mukadam" }]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools]
+packages = ["cryptium"]
+
+[project.scripts]
+cryptium = "cryptium.cryptium:main"
