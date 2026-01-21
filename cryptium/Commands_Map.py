@@ -70,5 +70,12 @@ class CommandsMap:
         else:
             parent_path = Cryptium.base_path
         Cryptium.directory.create_dir(parent_path / args.folder_name)
+    def config_cmd(args):
+        if args.set_defaults:
+            Config.reset_to_defaults()
+        if args.custom_mapping:
+            Config.load_config(args.custom_mapping)
+        if args.dry_run:
+            Logger.log_info("Dry run mode enabled for config command.")
 
 

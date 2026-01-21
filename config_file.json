@@ -13,21 +13,6 @@
     ".docx": "Word Documents",
     ".ppt": "Powerpoint Documents",
     ".pptx": "POWERPOINT PRESENTATIONS",
-    ".pdf": "PDF FILES",
-    ".m4a": "AUDIOS",
-    ".tmp": "TMP FILES",
-    ".mp4": "VIDEOS",
-    ".zoom": "ZOOM",
-    ".log": "LOGS",
-    ".xlsx": "EXCEL SHEETS",
-    ".conf": "CONF FILES",
-    ".exe": "EXE FILES",
-    ".webp": "Others",
-    ".tag": "Others",
-    ".WAV": "AUDIO FILES",
-    "": "UNKNOWN",
-    ".sample": "SAMPLE",
-    ".py": "Others",
-    ".json": "Others"
+    ".pdf": "PDF FILES"
   }
 }
